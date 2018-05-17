@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import './css/style.css';
+import './css/bootstrap.min.css';
 
 class App extends Component {
   render() {
     return (
       <div>
-        <div className="left-menu">
+        <div className="alert alert-primary left-menu">
           <ul>
             <li>
               <a className="left-menu-text" href="#">Cadastro de morador</a>
