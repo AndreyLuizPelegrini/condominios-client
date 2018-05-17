@@ -1,0 +1,17 @@
+.left-menu{
+    border: 1px solid blue;
+    background-color: blue;
+    height: 660px;
+    width: 22%;
+}
+
+.left-menu-text{
+    color: white;
+}
+
+.corpo-pagina{
+    font-size: 20px;
+    margin-top: -48%;
+    margin-left: 30%;
+}
+
