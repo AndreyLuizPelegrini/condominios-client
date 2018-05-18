@@ -5,6 +5,12 @@ import './css/style.css';
 import './css/bootstrap.min.css';
 
 class App extends Component {
+
+  constructor(){
+    super();
+    this.state = {listaMoradores: [{nome: 'Andrey', email: 'andreypelegrini2@gmail.com', senha: '123456'}]}
+  }
+
   render() {
     return (
       <div>
@@ -33,19 +39,19 @@ class App extends Component {
                 <form>
                   <div>
                     <label htmlFor="nome">Nome</label> 
-                    <input id="nome" type="text" name="nome" value=""  />                  
+                    <input id="nome" className="form-control width-input" type="text" name="nome" value=""  />                  
                   </div>
                   <div>
                     <label htmlFor="email">Email</label> 
-                    <input id="email" type="email" name="email" value=""  />                  
+                    <input id="email" className="form-control width-input" type="email" name="email" value=""  />                  
                   </div>
                   <div>
                     <label htmlFor="senha">Senha</label> 
-                    <input id="senha" type="password" name="senha"  />                                      
+                    <input id="senha" className="form-control width-input" type="password" name="senha"  />                                      
                   </div>
                   <div>                                  
                     <label></label> 
-                    <button type="submit">Gravar</button>                                    
+                    <button className="btn btn-primary" type="submit">Gravar</button>                                    
                   </div>
                 </form>             
 
@@ -59,10 +65,16 @@ class App extends Component {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>Alberto</td>                
-                      <td>alberto.souza@caelum.com.br</td>                
-                    </tr>
+                   {
+                     this.state.listaMoradores.map(function(morador){
+                       return (
+                        <tr>
+                          <td>{morador.nome}</td>
+                          <td>{morador.email}</td>
+                        </tr>
+                       );
+                     })
+                   }
                   </tbody>
                 </table> 
               </div>             
