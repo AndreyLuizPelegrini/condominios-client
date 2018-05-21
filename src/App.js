@@ -3,12 +3,23 @@ import logo from './logo.svg';
 import './App.css';
 import './css/style.css';
 import './css/bootstrap.min.css';
+import $ from 'jquery';
 
 class App extends Component {
 
   constructor(){
     super();
-    this.state = {listaMoradores: [{nome: 'Andrey', email: 'andreypelegrini2@gmail.com', senha: '123456'}]}
+    this.state = {listaMoradores: []}
+  }
+
+  componentDidMount(){
+    $.ajax({
+      url: 'http://localhost:8080/pessoas',
+      dataType: 'json', 
+      success: function(response){
+        this.setState({listaMoradores: response});
+      }.bind(this)
+    });
   }
 
   render() {
