@@ -79,7 +79,7 @@ class App extends Component {
                    {
                      this.state.listaMoradores.map(function(morador){
                        return (
-                        <tr>
+                        <tr key={morador.id}>
                           <td>{morador.nome}</td>
                           <td>{morador.email}</td>
                         </tr>
