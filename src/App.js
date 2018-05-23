@@ -22,6 +22,22 @@ class App extends Component {
     });
   }
 
+  cadastroMorador(evento){
+    evento.preventDefault();
+    $.ajax({
+      url: 'http://localhost:8080/pessoas',
+      contentType: 'application/json', 
+      dataType: 'json', 
+      type: 'POST', 
+      data: JSON.stringify({nome: 'Andrey', cpf: '443.522.788-66', email: 'andreypelegrini2@gmail.com'}), 
+      success: function(responsta){
+
+      }, error: function(erro){
+        console.log(erro);
+      }
+    });
+  }
+
   render() {
     return (
       <div>
@@ -47,7 +63,7 @@ class App extends Component {
             </div>
             <div>
               <div>
-                <form>
+                <form onSubmit={this.cadastroMorador} method="POST">
                   <div>
                     <label htmlFor="nome">Nome</label> 
                     <input id="nome" className="form-control width-input" type="text" name="nome" value=""  />                  
