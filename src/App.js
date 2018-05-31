@@ -4,6 +4,7 @@ import './App.css';
 import './css/style.css';
 import './css/bootstrap.min.css';
 import $ from 'jquery';
+import moment from 'moment';
 
 class App extends Component {
 
@@ -65,10 +66,10 @@ class App extends Component {
         celular: this.state.celular, 
         telefone: this.state.telefone, 
         email: this.state.email, 
-        dataNascimento: this.state.dataNascimento
+        dataNascimento: moment(this.state.dataNascimento, 'DD/MM/YYYY').format('YYYY-MM-DD')
       }), 
       success: function(resposta){
-
+        
       }, error: function(erro){
         console.log(erro);
       }
@@ -163,9 +164,9 @@ class App extends Component {
                        onChange={this.setEmail} />                  
                   </div> 
                   <div>
-                    <label htmlFor="dataNascimento">Data de Nascimento</label> 
-                    <input id="dataNascimento" className="form-control width-input" type="text" name="dataNascimento" value={this.state.dataNascimento} 
-                       onChange={this.setDataNascimento} />                  
+                    <label htmlFor="dataNascimento">Data de Nascimento</label>                  
+                    <input id="dataNascimento" className="form-control width-input" type="text" name="dataNascimento" 
+                    value={this.state.dataNascimento} onChange={this.setDataNascimento} />                               
                   </div> 
                   <div>                                  
                     <label></label> 
