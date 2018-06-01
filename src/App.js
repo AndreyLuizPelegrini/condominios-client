@@ -5,14 +5,15 @@ import './css/style.css';
 import './css/bootstrap.min.css';
 import $ from 'jquery';
 import moment from 'moment';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 class App extends Component {
 
   constructor(){
     super();
 
-    this.state = {
-      listaMoradores: [], 
+    this.state = { 
       listaSexos: [], 
       nome: '', 
       cpf: '', 
@@ -29,25 +30,18 @@ class App extends Component {
     this.setCelular = this.setCelular.bind(this);
     this.setTelefone = this.setTelefone.bind(this);
     this.setEmail = this.setEmail.bind(this);
+    this.setSexo = this.setSexo.bind(this);
     this.setDataNascimento = this.setDataNascimento.bind(this);
+    this.mudaDataNascimento = this.mudaDataNascimento.bind(this);
 
   }
 
   componentDidMount(){
     $.ajax({
-      url: 'http://localhost:8080/pessoas',
-      dataType: 'json', 
-      success: function(response){
-        this.setState({listaMoradores: response});
-      }.bind(this)
-    });
-
-    $.ajax({
       url: 'http://localhost:8080/pessoas/sexos',
       dataType: 'json', 
       success: function(response){
         this.setState({listaSexos: response});
-        console.log(this.state.listaSexos);
       }.bind(this)
     });
   }
@@ -69,7 +63,7 @@ class App extends Component {
         dataNascimento: moment(this.state.dataNascimento, 'DD/MM/YYYY').format('YYYY-MM-DD')
       }), 
       success: function(resposta){
-        
+        console.log(resposta);
       }, error: function(erro){
         console.log(erro);
       }
@@ -98,6 +92,14 @@ class App extends Component {
 
   setDataNascimento(evento){
     this.setState({dataNascimento: evento.target.value});
+  }
+  
+  setSexo(evento){
+    this.setState({sexo: evento.target.value});
+  }
+
+  mudaDataNascimento(data) {
+    this.setState({dataNascimento: data});
   }
 
   render() {
@@ -138,13 +140,13 @@ class App extends Component {
                   </div>                  
                   <div className="padding-top-20">
                     <label htmlFor="sexo">Sexo</label>
-                    <select>
+                    <select onChange={this.setSexo} value={this.state.sexo}>
                       {
                         this.state.listaSexos.map(function(sexo){
                           return (
                             <option key={sexo.codigo} value={sexo.codigo}>{sexo.descricao}</option>
                           );
-                        })
+                        }.bind(this))
                       }
                     </select>
                   </div>
@@ -165,8 +167,7 @@ class App extends Component {
                   </div> 
                   <div>
                     <label htmlFor="dataNascimento">Data de Nascimento</label>                  
-                    <input id="dataNascimento" className="form-control width-input" type="text" name="dataNascimento" 
-                    value={this.state.dataNascimento} onChange={this.setDataNascimento} />                               
+                    <DatePicker selected={this.state.dataNascimento} onSelect={this.mudaDataNascimento} dateFormat="DD/MM/YYYY" />                            
                   </div> 
                   <div>                                  
                     <label></label> 
@@ -174,29 +175,7 @@ class App extends Component {
                   </div>
                 </form>             
 
-              </div>  
-              <div>            
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Nome</th>
-                      <th>email</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                   {
-                     this.state.listaMoradores.map(function(morador){
-                       return (
-                        <tr key={morador.id}>
-                          <td>{morador.nome}</td>
-                          <td>{morador.email}</td>
-                        </tr>
-                       );
-                     })
-                   }
-                  </tbody>
-                </table> 
-              </div>             
+              </div>           
             </div>
           </div>          
       </div>
