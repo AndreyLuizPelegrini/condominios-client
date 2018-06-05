@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import '../css/style.css';
-import '../css/bootstrap.min.css';
+import '../../css/style.css';
+import '../../css/bootstrap.min.css';
 import $ from 'jquery';
 import moment from 'moment';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import InputCustomizado from '../componentes/InputCustomizado';
-import BotaoSubmit from '../componentes/BotaoSubmit';
+import InputCustomizado from '../utils/InputCustomizado';
+import BotaoSubmit from '../utils/BotaoSubmit';
 
 export default class FormCadastroMorador extends Component {
 

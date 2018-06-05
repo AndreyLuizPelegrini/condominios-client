@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import CadastroMorador from './componentes/CadastroMorador';
-import MenuLateral from './componentes/MenuLateral';
+import CadastroMorador from './componentes/morador/CadastroMorador';
+import MenuLateral from './componentes/utils/MenuLateral';
 
 export default class App extends Component {
 
